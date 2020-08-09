@@ -1,5 +1,12 @@
 Multiple Choice Javascript Quiz Homework
 
+
+This project displays questions on the topic of javascript when the user presses the start button. 
+The questions are displayed and the user can pick the answer and is notified if the correct 
+response was choosen.  If the timer reaches zero or the question bank is exhausted the screen will
+clear and the score is displayed and the user is asked for their initials.  When the initials are 
+inputted the user score and initials are displayed.
+
 "work in progress"
 
 Developed by Timothy Peterson

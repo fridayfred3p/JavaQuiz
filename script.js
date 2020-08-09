@@ -7,7 +7,7 @@ let questionSelect = 0;
 const questionbtn = document.querySelector(".container");
 const highscore = document.querySelector("#highscore");
 var choiceButton;
-let initials;
+var initials;
 
 // Timer function 
 function timerFunction() {
@@ -92,25 +92,42 @@ function checkAnswer() {
     displayQuestion();
     }
     else {
+        
         removeQuiz();
         displayScore();
     }
     };
     console.log(questionSelect);
-//When the last question is answered
+//When the last question is answered: clear quiz question, display score and input initials
 function removeQuiz() {
     const removeQuestions = document.getElementById("remove");
     removeQuestions.remove();
-    alert("Your score is " + score);
+    alert("Game OVER. Your score is " + score);
+    var initials = prompt("Please enter your initials.");
     console.log(10);
 };
+//Display scores and initials
 function displayScore() {
+    
+    let scoreBank = [
+        {Name: "initials", Score: "score"}
+    ];
+
     const highestScore = document.createElement("form");
+    highestScore.setAttribute("method", "POST");
+    highestScore.setAttribute("action", "submit.php");
     highestScore.setAttribute("id", "scoreForm");
-    const inputScore = document.createElement("input")
-    inputScore.setAttribute("type", "text")
-    inputScore.setAttribute("action", "submit.php")
+    
+    const inputScore = document.createElement("input");
+    inputScore.setAttribute("type", "text");
     highscore.appendChild(highestScore);
-    document.getElementById("scoreForm").style.border = "5px solid red";
+    document.getElementById("scoreForm").style.cssText = "border: 5px solid red; height: 200px; width: 200px;";
+
+    let submitButton = document.createElement("input");
+    submitButton.setAttribute("type", "submit");
+    submitButton.setAttribute("value", "ENTER");
+    
+
+
 };
 
