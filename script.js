@@ -41,9 +41,9 @@ generatebtn.addEventListener("click", function() {
 const questionBank = [
     { Question: "What is the correct terminology for an element of JavaScipt?", Choices: ["scripting", "script", "JavaScipt", "JS"], Answer: "script"},
     { Question: "Where is the correct place to insert a JavaScript?", Choices: ["Both the <head> section and the <body> section are correct", "The <head> section", "The <body> section"], Answer: "The <body> section"},
-    { Question: "What is the correct syntax for referring to an external script called 'xx.js'?", Choices: ["<script src='xxx.js'>", "<script href='xxx.js'>", "<script name='xxx.js'>"], Answer: "<script src='xxx.js'>"},
+    { Question: "What is the correct syntax for referring to an external script called 'xxx.js'?", Choices: ["<script src='xxx.js'>", "<script href='xxx.js'>", "<script name='xxx.js'>"], Answer: "<script src='xxx.js'>"},
     { Question: "The external JavaScript file must contain the <script> tag?", Choices: ["true", "false"], Answer: "false"},
-    { Question: "How do you write 'Hello world' in a alert box?", Choices: ['msg("Hello World");', 'alert("Hellow World");', 'alertBox("Hello World");'], Answer:'alert("Hellow World");' },
+    { Question: "How do you write 'Hello world' in a alert box?", Choices: ['msg("Hello World");', 'alert("Hello World");', 'alertBox("Hello World");'], Answer:'alert("Hello World");' },
     { Question: "How do you create a function in JavaScript?", Choices: ["function = myFunction()", "function myFunction()", "function:myFunction()"], Answer: "function myFunction()"},
     { Question: "How do you call a function named myFunction?", Choices: ["call myFunction()", "myFunction()", "call function myFunction()"], Answer: "myFunction()"},
     { Question: "How to write an IF statement in Javascript?", Choices: ["if i = 5", "if i = 5 then", "if (i == 5)", "if i == 5 then"], Answer: "if (i == 5)"},
@@ -52,7 +52,7 @@ const questionBank = [
     { Question: "How does a FOR loop start?", Choices: ["for i = 1 to 5", "for (i = 0; i <= 5; i++)", "for (i = 0; i <= 5)", "for (i <= 5;i++)"], Answer: "for (i = 0; i <= 5; i++)"},
     { Question: "How do you add a comment in a Javascript?", Choices: ["<!-- This is a comment -->", "//This is a comment", "'This is a comment"], Answer: "//This is a comment"},
     { Question: "How to insert a comment that has more than one line?", Choices: ["//This comment has more than one line//", "<!- This comment has more than one line-->", "/*This comment has more than one line*/"], Answer: "/*This comment has more than one line*/"},
-    { Question: "How do you round the number 7.25, to the nearest integer?", Choices: ["round(7.25)", "", "rnd(7.25)", "Math.rnd(7.25)"], Answer: "round(7.25)"},
+    { Question: "How do you round the number 7.25, to the nearest integer?", Choices: ["round(7.25)", "rnd(7.25)", "Math.rnd(7.25)"], Answer: "round(7.25)"},
     ];
 
 //Display questions, Check if answer right and annotate score of player
@@ -65,22 +65,37 @@ function displayQuestion() {
         const choiceButton = document.createElement("button");
         choiceButton.innerText = questionBank[questionSelect].Choices[i];
         questionbtn.appendChild(choiceButton);
-        choiceButton.addEventListener("click", checkAnswer);   
-};
+        choiceButton.addEventListener("click", checkAnswer);
+        console.log(questionSelect);
+        
+        
+    };
     
 };
 //Allows user to choose answer
 function checkAnswer() {
-let userAnswer = event.target.textContent;
-if (userAnswer === questionBank[questionSelect].Answer) {
-    alert("Correct");
-    score += 5;
-  //  console.log(score);
-} else {
-    alert("Wrong");
-    
-    timer -= 10;
-};
-questionSelect++;
-  //      console.log(userAnswer);
-};
+    let userAnswer = event.target.textContent;
+    if (userAnswer === questionBank[questionSelect].Answer) {
+        alert("Correct");
+        score += 5;        
+        console.log(score);
+    } 
+    else {
+        alert("Wrong");
+        timer -= 10;
+    };
+    console.log(userAnswer);
+    questionSelect++;
+    if (questionSelect < 13 && timer > 0) {
+    displayQuestion();
+    }
+    else {
+        displayScore();
+    }
+    };
+    console.log(questionSelect);
+//When the last question is answered
+function displayScore() {
+
+    console.log(10);
+}
