@@ -1,14 +1,15 @@
 // Assign variables
 const generatebtn = document.querySelector("#buttonStart");
 let timer = 120;
-let timerDisplay = document.querySelector("#timer1");
+const timerDisplay = document.querySelector("#timer1");
 let score = 0;
 let questionSelect = 0;
 const questionbtn = document.querySelector(".container");
+var choiceButton;
 
 // Timer function 
 function timerFunction() {
-    var timeraction = setInterval(function() {
+    let timeraction = setInterval(function() {
        timerDisplay.textContent=timer;
        timerDisplay.style.cssFloat="Right";   
     if (timer > 0) {
@@ -19,17 +20,13 @@ function timerFunction() {
     }, 1000);
 }
 
-
-
-
-
 //Attach click of button to start of quiz
 generatebtn.addEventListener("click", function() {
     //Remove button for space
     generatebtn.style.display = "none";
     //Display timer in corner of screen
-    
     timerFunction();
+    //Displays Questions and Answers
     displayQuestion();
 
 
@@ -42,7 +39,7 @@ generatebtn.addEventListener("click", function() {
 
 // Block of question code
 const questionBank = [
-    { Question: "Inside which HTML element do we put the JavaScipt?", Choices: ["scripting", "script", "JavaScipt", "JS"], Answer: "script"},
+    { Question: "What is the correct terminology for an element of JavaScipt?", Choices: ["scripting", "script", "JavaScipt", "JS"], Answer: "script"},
     { Question: "Where is the correct place to insert a JavaScript?", Choices: ["Both the <head> section and the <body> section are correct", "The <head> section", "The <body> section"], Answer: "The <body> section"},
     { Question: "What is the correct syntax for referring to an external script called 'xx.js'?", Choices: ["<script src='xxx.js'>", "<script href='xxx.js'>", "<script name='xxx.js'>"], Answer: "<script src='xxx.js'>"},
     { Question: "The external JavaScript file must contain the <script> tag?", Choices: ["true", "false"], Answer: "false"},
@@ -60,20 +57,30 @@ const questionBank = [
 
 //Display questions, Check if answer right and annotate score of player
 function displayQuestion() {
-    var questionElement = document.createElement("p");
+    const questionElement = document.createElement("p");
     questionElement.innerText = questionBank[questionSelect].Question;
     questionbtn.appendChild(questionElement);
-    //Display multiple answers
+    //Display Question and multiple answers
     for (var i = 0; i < questionBank[questionSelect].Choices.length; i++) {
-        var choiceButton = document.createElement("button");
+        const choiceButton = document.createElement("button");
         choiceButton.innerText = questionBank[questionSelect].Choices[i];
         questionbtn.appendChild(choiceButton);
-    }
-    if (timer > 0) {
-
-    }
-    questionSelect++;
-
-}
-
-
+        choiceButton.addEventListener("click", checkAnswer);   
+};
+    
+};
+//Allows user to choose answer
+function checkAnswer() {
+let userAnswer = event.target.textContent;
+if (userAnswer === questionBank[questionSelect].Answer) {
+    alert("Correct");
+    score += 5;
+  //  console.log(score);
+} else {
+    alert("Wrong");
+    
+    timer -= 10;
+};
+questionSelect++;
+  //      console.log(userAnswer);
+};
