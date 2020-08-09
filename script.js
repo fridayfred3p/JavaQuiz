@@ -96,6 +96,7 @@ function checkAnswer() {
     console.log(questionSelect);
 //When the last question is answered
 function displayScore() {
-
+    const removeQuestions = document.getElementById("remove");
+    removeQuestions.remove();
     console.log(10);
-}
+};
