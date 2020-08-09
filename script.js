@@ -5,7 +5,9 @@ const timerDisplay = document.querySelector("#timer1");
 let score = 0;
 let questionSelect = 0;
 const questionbtn = document.querySelector(".container");
+const highscore = document.querySelector("#highscore");
 var choiceButton;
+let initials;
 
 // Timer function 
 function timerFunction() {
@@ -90,13 +92,25 @@ function checkAnswer() {
     displayQuestion();
     }
     else {
+        removeQuiz();
         displayScore();
     }
     };
     console.log(questionSelect);
 //When the last question is answered
-function displayScore() {
+function removeQuiz() {
     const removeQuestions = document.getElementById("remove");
     removeQuestions.remove();
+    alert("Your score is " + score);
     console.log(10);
 };
+function displayScore() {
+    const highestScore = document.createElement("form");
+    highestScore.setAttribute("id", "scoreForm");
+    const inputScore = document.createElement("input")
+    inputScore.setAttribute("type", "text")
+    inputScore.setAttribute("action", "submit.php")
+    highscore.appendChild(highestScore);
+    document.getElementById("scoreForm").style.border = "5px solid red";
+};
+
