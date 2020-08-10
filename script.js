@@ -6,8 +6,10 @@ let score = 0;
 let questionSelect = 0;
 const questionbtn = document.querySelector(".container");
 const highscore = document.querySelector("#highscore");
+const scoreDisplay = document.querySelector("#scoreDisplay")
 var choiceButton;
-var initials;
+var initials = "";
+
 
 // Timer function 
 function timerFunction() {
@@ -103,31 +105,16 @@ function removeQuiz() {
     const removeQuestions = document.getElementById("remove");
     removeQuestions.remove();
     alert("Game OVER. Your score is " + score);
-    var initials = prompt("Please enter your initials.");
-    console.log(10);
+    initials = prompt("Please enter your initials.");
+    console.log(initials);
+    console.log(score);
 };
 //Display scores and initials
 function displayScore() {
-    
-    let scoreBank = [
-        {Name: "initials", Score: "score"}
-    ];
-
-    const highestScore = document.createElement("form");
-    highestScore.setAttribute("method", "POST");
-    highestScore.setAttribute("action", "submit.php");
-    highestScore.setAttribute("id", "scoreForm");
-    
-    const inputScore = document.createElement("input");
-    inputScore.setAttribute("type", "text");
-    highscore.appendChild(highestScore);
-    document.getElementById("scoreForm").style.cssText = "border: 5px solid red; height: 200px; width: 200px;";
-
-    let submitButton = document.createElement("input");
-    submitButton.setAttribute("type", "submit");
-    submitButton.setAttribute("value", "ENTER");
-    
-
-
-};
+    const initialScore = document.createElement("li");
+    let   initialScoreText = document.createTextNode(initials + ":" + score);
+    initialScore.appendChild(initialScoreText);
+    scoreDisplay.appendChild(initialScore);
+    console.log(initials);
+   };
 
