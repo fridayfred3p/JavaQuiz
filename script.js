@@ -9,6 +9,7 @@ const highscore = document.querySelector("#highscore");
 const scoreDisplay = document.querySelector("#scoreDisplay")
 var choiceButton;
 var initials = "";
+let scoreList = [];
 
 
 // Timer function 
@@ -106,15 +107,31 @@ function removeQuiz() {
     removeQuestions.remove();
     alert("Game OVER. Your score is " + score);
     initials = prompt("Please enter your initials.");
+    var ls = [];
+    var tempjs = {
+        initials: initials,
+        score: score
+
+    }
+    ls.push(tempjs);
+
+    localStorage.setItem("user", JSON.stringify(ls));
+    
     console.log(initials);
     console.log(score);
 };
-//Display scores and initials
+//Store and Display scores and initials
 function displayScore() {
+    
+    var returnLs = JSON.parse(localStorage.getItem("user"));
+    for (var i = 0; i < returnLs.length; i++) {
     const initialScore = document.createElement("li");
-    let   initialScoreText = document.createTextNode(initials + ":" + score);
+    let   initialScoreText = document.createTextNode(returnLs[i].initials + ":" + returnLs[i].score);
     initialScore.appendChild(initialScoreText);
     scoreDisplay.appendChild(initialScore);
+    }
     console.log(initials);
    };
+function storeScore() {
 
+}
