@@ -108,15 +108,16 @@ function removeQuiz() {
     alert("Game OVER. Your score is " + score);
     initials = prompt("Please enter your initials.");
     var ls = [];
+    var returnLs = JSON.parse(localStorage.getItem("user"));
+    if (Array.isArray(returnLs)) {
+        ls = returnLs;
+    }
     var tempjs = {
         initials: initials,
         score: score
-
     }
     ls.push(tempjs);
-
     localStorage.setItem("user", JSON.stringify(ls));
-    
     console.log(initials);
     console.log(score);
 };
